@@ -5,6 +5,8 @@ import requests
 import time
 import logging
 from logging.handlers import RotatingFileHandler
+import hashlib
+import tempfile
 
 # Load environment variables from .env file located in the parent directory of the current file's parent directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +39,45 @@ file_handler.setFormatter(formatter)
 # Add the handlers to the logger
 logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
+
+def download_video_to_tempfile(url):
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        # Create a temporary file
+        temp_file = tempfile.NamedTemporaryFile(delete=False)
+        try:
+            # Write video content to the temporary file
+            for chunk in response.iter_content(chunk_size=8192):
+                if chunk:
+                    temp_file.write(chunk)
+        finally:
+            temp_file.close()
+        return temp_file.name
+    else:
+        raise Exception(f"Failed to download video, status code: {response.status_code}")
+
+def hash_video_from_file(file_path, hash_algorithm='sha256'):
+    hash_func = hashlib.new(hash_algorithm)
+    with open(file_path, 'rb') as f:
+        while chunk := f.read(8192):
+            hash_func.update(chunk)
+    return hash_func.hexdigest()
+
+def get_hash_from_video(video_url):
+    try:
+        # Download video to a temporary file
+        temp_file_path = download_video_to_tempfile(video_url)
+        
+        # Compute hash
+        video_hash = hash_video_from_file(temp_file_path)
+        return video_hash
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    
+    finally:
+        # Clean up the temporary file
+        os.remove(temp_file_path)
 
 class FacebookAPI:
     """Class to interact with the Facebook Graph API."""
