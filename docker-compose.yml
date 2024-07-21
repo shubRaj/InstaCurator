@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: web
+    build: .
+    command: sh -c "if [ ! -d migrations ]; then flask db init; fi && flask db migrate -m 'reinitation' && flask db upgrade && gunicorn -b 0.0.0.0:8000 main:app"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      FLASK_APP: main.py
+      FLASK_ENV: production
+    restart: always
