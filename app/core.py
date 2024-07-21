@@ -175,7 +175,11 @@ class InstagramAPI:
         logger.debug(f"Creating media container: URL={URL}, caption={caption}, media_type={media_type}")
         params = {
             # "caption": caption,
-            "caption":"",
+            "caption":"""\
+            All rights to the content displayed on this site belong to their respective owners. If you believe any content infringes on your rights or if you wish to request its removal, please direct message us. We will address your concerns promptly.
+            
+            #lovequotes #LOLify #love #emotion #trending #funny #darkhumor #memes #couplegoals #lovequotes #relationshipgoals #tmkoc #heartbroken #explore #lol #dailymemes #feelings #brokenheart #relatable #dankmemes #savage #explore #viral #explorepage #breakup
+            """,
             "access_token": ACCESS_TOKEN
         }
         if media_type.lower() == "image":
