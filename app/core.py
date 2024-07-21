@@ -239,7 +239,26 @@ class InstagramAPI:
         container_id = self._create_container(URL, caption=caption, media_type=media_type)
         if container_id:
             self._publish_container(container_id)
+            
+    # def send_message(self,*,recipient_id,message):
+    #     params = {
+    #         'access_token': ACCESS_TOKEN,
+
+    #     }
+    #     headers = {
+    #         'Content-Type': 'application/x-www-form-urlencoded',
+    #     }
+    #     payload = {
+    #         "recipient":{
+    #             "id": recipient_id,
+    #         },
+    #         "message": {
+    #             "text":message
+    #         }
+    #     }
+    #     response = self.get_session().post(f"{FacebookAPI._HOST}/me/messages",headers=headers,params=params,json=payload)
+    #     print(response.json())
 
 if __name__ == "__main__":
     with InstagramAPI() as iapi:
-        iapi.make_post("https://d.rapidcdn.app/snapinsta?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LmNkbmluc3RhZ3JhbS5jb20vbzEvdi90MTYvZjEvbTg2L0ExNDVDMTQ4ODUzMjFBRUY5NEE3MkU1MTJCOEY5M0E1X3ZpZGVvX2Rhc2hpbml0Lm1wND9lZmc9ZXlKeFpWOW5jbTkxY0hNaU9pSmJYQ0pwWjE5M1pXSmZaR1ZzYVhabGNubGZkblJ6WDI5MFpsd2lYU0lzSW5abGJtTnZaR1ZmZEdGbklqb2lkblJ6WDNadlpGOTFjbXhuWlc0dVkyeHBjSE11WXpJdU56QTBMbUpoYzJWc2FXNWxJbjAmX25jX2h0PXNjb250ZW50LmNkbmluc3RhZ3JhbS5jb20mX25jX2NhdD0xJnZzPTQ2OTU2MjQ2MjM4MTk4NV8xMjY1OTE0NjkmX25jX3ZzPUhCa3NGUUlZVW1sblgzaHdkbDl5WldWc2MxOXdaWEp0WVc1bGJuUmZjM0pmY0hKdlpDOUJNVFExUXpFME9EZzFNekl4UVVWR09UUkJOekpGTlRFeVFqaEdPVE5CTlY5MmFXUmxiMTlrWVhOb2FXNXBkQzV0Y0RRVkFBTElBUUFWQWhnNmNHRnpjM1JvY205MVoyaGZaWFpsY25OMGIzSmxMMGRGYmtJMFVuSjFaR1poWVVoNlRXUkJUM2R4TkhCUk1YaDBZMUJpY1Y5RlFVRkJSaFVDQXNnQkFDZ0FHQUFiQUJVQUFDYmMwODdidUx2SlB4VUNLQUpETXl3WFFBcThhbjc1MnlNWUVtUmhjMmhmWW1GelpXeHBibVZmTVY5Mk1SRUFkZjRIQUElM0QlM0QmY2NiPTktNCZvaD0wMF9BWUFQbGxFLWVnczRkTVd1cWtUTVZOMm9rVWpGWUhQZHdSZEpPYWdQTHVrZC1nJm9lPTY2OUQzNEUxJl9uY19zaWQ9MTBkMTNiIiwiZmlsZW5hbWUiOiJTbmFwaW5zdGEuYXBwX3ZpZGVvX0ExNDVDMTQ4ODUzMjFBRUY5NEE3MkU1MTJCOEY5M0E1X3ZpZGVvX2Rhc2hpbml0Lm1wNCJ9.-ULWqno5hH-uKGna0oRjlfVmtpsf4E_uT8UBQFfGszw&dl=1&dl=1", caption="Video Here", media_type="REELS")
+        iapi.send_message(recipient_id="113838460014203",message="hello")
