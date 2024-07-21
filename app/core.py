@@ -174,7 +174,8 @@ class InstagramAPI:
         """Create a media container for posting."""
         logger.debug(f"Creating media container: URL={URL}, caption={caption}, media_type={media_type}")
         params = {
-            "caption": caption,
+            # "caption": caption,
+            "caption":"",
             "access_token": ACCESS_TOKEN
         }
         if media_type.lower() == "image":
