@@ -132,7 +132,7 @@ class InstagramAPI:
     """Class to interact with the Instagram Graph API."""
     
     _HOST = "https://graph.instagram.com"
-    _WAIT_INTERVAL = 5
+    _WAIT_INTERVAL = 30
 
     def __init__(self):
         """Initialize the InstagramAPI class and set up a requests session."""

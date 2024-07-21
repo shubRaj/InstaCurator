@@ -17,4 +17,4 @@ EXPOSE 8000
 ENV FLASK_APP=main.py
 
 # Run app.py when the container launches
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "main:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000","--timeout","300", "main:app"]
